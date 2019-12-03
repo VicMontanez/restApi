@@ -13,9 +13,13 @@ app.get("/posts", (req, res) => {
 });
 
 //Connect To DB
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
-  console.log("Connected to DB");
-});
+mongoose.connect(
+  process.env.DB_CONNECTION,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log("Connected to DB");
+  }
+);
 
 //How to listen to server w/ port
 const port = 3000;
