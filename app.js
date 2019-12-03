@@ -1,9 +1,7 @@
 const express = require("express");
-
 const app = express();
-
-//Middlewares
-app.use(auth);
+const mongoose = require("mongoose");
+require("dotenv/config");
 
 //Routes
 app.get("/", (req, res) => {
@@ -14,8 +12,12 @@ app.get("/posts", (req, res) => {
   res.send("We are on post");
 });
 
-//How to listen to server w/ port
+//Connect To DB
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
+  console.log("Connected to DB");
+});
 
+//How to listen to server w/ port
 const port = 3000;
 
 app.listen(port, err => {
